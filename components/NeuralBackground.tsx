@@ -19,9 +19,11 @@ export default function NeuralBackground() {
     let h = (canvas.height = window.innerHeight);
 
     const isMobile = w < 768;
-    const PARTICLE_COUNT = isMobile ? 600 : 2000;
-    const CONNECTION_DIST = isMobile ? 80 : 120;
-    const MOUSE_RADIUS = 150;
+    // Optimization: drastically reduce particle count to maintain 60FPS
+    const baseCount = isMobile ? 150 : 400;
+    const PARTICLE_COUNT = baseCount; // Use baseCount for particle count
+    const CONNECTION_DIST = isMobile ? 100 : 150;
+    const MOUSE_RADIUS = isMobile ? 100 : 200;
 
     // Particles
     interface Particle {
@@ -193,12 +195,20 @@ export default function NeuralBackground() {
         ctx.fill();
 
         // Connections (check only nearby particles for performance)
+        let connections = 0;
         for (let j = i + 1; j < particles.length; j++) {
+          if (connections > 5) break; // Optimization: max 5 lines per particle to prevent GPU overdraw
+
           const p2 = particles[j];
           const dx = p.x - p2.x;
+          // Quick bounding box check before expensive distance calc
+          if (Math.abs(dx) > CONNECTION_DIST) continue;
           const dy = p.y - p2.y;
+          if (Math.abs(dy) > CONNECTION_DIST) continue;
+
           const dist = dx * dx + dy * dy;
           if (dist < CONNECTION_DIST * CONNECTION_DIST) {
+            connections++;
             const alpha = 1 - Math.sqrt(dist) / CONNECTION_DIST;
             ctx.beginPath();
             ctx.moveTo(p.x, p.y);
