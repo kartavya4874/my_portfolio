@@ -26,15 +26,19 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://kartavyabaluja.in"),
-  title: "Kartavya Baluja — AI/ML Engineer",
+  title: "Kartavya Baluja | AI & Machine Learning Engineer",
   description:
-    "Portfolio of Kartavya Baluja, AI/ML Engineer & Python Developer specialising in LLMs, RAG, Agentic AI, and Deep Learning.",
-  keywords: ["Kartavya Baluja", "AI Engineer", "ML Engineer", "Python Developer", "Deep Learning", "LLMs", "RAG", "Agentic AI", "Next.js", "Portfolio"],
+    "Portfolio of Kartavya Baluja, an AI/ML Engineer specializing in LLMs, RAG, Agentic AI, and Python. Open for collaboration and hiring opportunities.",
+  keywords: [
+    "Kartavya Baluja", "AI Engineer", "Machine Learning Engineer", "Hire AI Developer", 
+    "Python Developer", "Deep Learning", "LLMs", "RAG", "Agentic AI", "Open to Collaborate", 
+    "AI Freelancer", "Machine Learning Consultant", "AI Portfolio", "Prompt Engineer"
+  ],
   authors: [{ name: "Kartavya Baluja", url: "https://kartavyabaluja.in" }],
   creator: "Kartavya Baluja",
   openGraph: {
-    title: "Kartavya Baluja — AI/ML Engineer",
-    description: "Building intelligent systems with LLMs, RAG, and Deep Learning.",
+    title: "Kartavya Baluja | AI & Machine Learning Engineer",
+    description: "Building intelligent systems with LLMs, RAG, and Deep Learning. Available for hiring and collaboration.",
     url: "https://kartavyabaluja.in",
     siteName: "Kartavya Baluja Portfolio",
     images: [{ url: "/kartavya1.jpg", width: 750, height: 750, alt: "Kartavya Baluja Profile Picture" }],
@@ -42,8 +46,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Kartavya Baluja — AI/ML Engineer",
-    description: "Building intelligent systems with LLMs, RAG, and Deep Learning.",
+    title: "Kartavya Baluja | AI & Machine Learning Engineer",
+    description: "Building intelligent systems with LLMs, RAG, and Deep Learning. Available for hiring and collaboration.",
     images: ["/kartavya1.jpg"],
   },
 };
@@ -57,9 +61,26 @@ export default function RootLayout({
     "@context": "https://schema.org",
     "@type": "Person",
     name: "Kartavya Baluja",
-    jobTitle: "AI/ML Engineer",
+    jobTitle: "AI & Machine Learning Engineer",
     url: "https://kartavyabaluja.in",
     image: "https://kartavyabaluja.in/kartavya1.jpg",
+    alumniOf: "Geeta University",
+    knowsAbout: [
+      "Artificial Intelligence",
+      "Machine Learning",
+      "Python",
+      "Large Language Models (LLMs)",
+      "Retrieval-Augmented Generation (RAG)",
+      "Agentic AI",
+      "Deep Learning",
+      "FastAPI"
+    ],
+    seeks: [
+      "Software Engineering Roles",
+      "AI Engineering Roles",
+      "Machine Learning Roles",
+      "Tech Collaborations"
+    ],
     sameAs: [
       "https://github.com/kartavya4874",
       "https://linkedin.com/in/kartavya-baluja-214ba1256"

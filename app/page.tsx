@@ -55,16 +55,19 @@ export default function Home() {
           </ScrollReveal>
 
           <ScrollReveal delay={0.1} direction="3d">
-            <h1 className="text-5xl sm:text-7xl md:text-8xl font-bold tracking-tight text-white m-0 leading-none">
-              <AnimatedText text={heroData.name} glitch />
+            <h1 className="flex flex-col gap-3 m-0">
+              <span className="text-5xl sm:text-7xl md:text-8xl font-bold tracking-tight text-white leading-none">
+                <AnimatedText text={heroData.name} glitch />
+              </span>
+              <span className="text-xl sm:text-3xl font-medium max-w-3xl leading-snug" style={{ color: "var(--muted)" }}>
+                <span className="typewriter-cursor">{heroData.tagline}</span>
+              </span>
             </h1>
           </ScrollReveal>
 
           <ScrollReveal delay={0.2}>
-            <p className="text-xl sm:text-3xl font-medium max-w-3xl leading-snug" style={{ color: "var(--muted)" }}>
-              <span className="typewriter-cursor">{heroData.tagline}</span>
-              <br className="hidden sm:block" />
-              <span style={{ color: "var(--accent)" }}>{heroData.subheading}</span>
+            <p className="text-xl sm:text-3xl font-medium max-w-3xl leading-snug" style={{ color: "var(--accent)" }}>
+              {heroData.subheading}
             </p>
           </ScrollReveal>
 
