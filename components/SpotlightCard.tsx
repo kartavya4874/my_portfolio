@@ -34,8 +34,17 @@ export default function SpotlightCard({
           background: useMotionTemplate`radial-gradient(400px circle at ${mouseX}px ${mouseY}px, ${borderColor}, transparent 80%)`,
         }}
       />
-      {/* Inner Mask to hide border glow inside */}
-      <div className="absolute inset-[1px] rounded-2xl bg-[#030014]/95 backdrop-blur-xl transition-colors duration-500 group-hover:bg-[#030014]/80" />
+      {/* Deep Translucent Frosted Glass Mask */}
+      <div className="absolute inset-[1px] rounded-2xl bg-black/40 backdrop-blur-2xl transition-all duration-500 group-hover:bg-black/20" />
+      
+      {/* Ultra-performant CSS Dot Matrix Texture */}
+      <div 
+        className="absolute inset-[1px] rounded-2xl opacity-10 pointer-events-none mix-blend-screen transition-opacity duration-700 group-hover:opacity-30"
+        style={{
+          backgroundImage: "radial-gradient(rgba(255, 255, 255, 0.4) 1px, transparent 1px)",
+          backgroundSize: "12px 12px"
+        }}
+      />
       
       {/* Main Inner highlight */}
       <motion.div
