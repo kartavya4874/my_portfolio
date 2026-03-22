@@ -7,7 +7,7 @@ export const heroData = {
 };
 
 export const aboutData = {
-  bio: "I am an AI/ML Engineer and Python Developer passionate about building intelligent systems that solve real-world problems. Currently working as an ML & AI Intern at White And Box, I specialize in LLM-powered applications, RAG workflows, Agentic AI, and deep learning pipelines.",
+  bio: "I am an AI/ML Engineer and Python Developer passionate about building intelligent systems that solve real-world problems. Currently working as an AI Engineer at Geeta Technical Hub, I specialize in LLM-powered applications, RAG workflows, Agentic AI, and deep learning pipelines.",
   photo_url: "/kartavya1.jpg", // Profile image
 };
 
@@ -88,7 +88,7 @@ export const experienceData = [
   },
   {
     id: 2, role: "ML & AI Intern", company: "White And Box – Tech Products & Services",
-    location: "Bengaluru, Karnataka, India", start_date: "2025-06-01", end_date: null, is_current: false,
+    location: "Bengaluru, Karnataka, India", start_date: "2025-06-01", end_date: "2025-12-01", is_current: false,
     bullets: [
       "Build and deploy LLM-powered AI solutions using Python frameworks, focusing on practical business applications",
       "Develop data pipelines for ML model training and inference using Pandas, NumPy, and TensorFlow",

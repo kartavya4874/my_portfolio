@@ -21,7 +21,8 @@ import CertCard from "@/components/CertCard";
 import ScrollReveal from "@/components/ScrollReveal";
 import AnimatedCounter from "@/components/AnimatedCounter";
 import ContactButtons from "@/components/ContactButtons";
-import { ArrowRight, Download, GraduationCap, MapPin, Calendar, ExternalLink, ChevronDown } from "lucide-react";
+import SpotlightCard from "@/components/SpotlightCard";
+import { ArrowRight, Download, GraduationCap, MapPin, Calendar, ExternalLink, ChevronDown, BrainCircuit, Code2, Layers } from "lucide-react";
 import Image from "next/image";
 
 export default function Home() {
@@ -139,19 +140,35 @@ export default function Home() {
 
           <div>
             <ScrollReveal>
-              <h3 className="heading-xl text-2xl mb-8">Technical Expertise</h3>
+              <div className="flex items-center gap-4 mb-8">
+                <h3 className="heading-xl text-3xl sm:text-4xl">Technical Expertise</h3>
+                <div className="h-px flex-1 bg-gradient-to-r from-cyan-500/50 to-transparent" />
+              </div>
             </ScrollReveal>
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {Object.entries(groupedSkills).map(([category, skillList], idx) => (
-                <ScrollReveal key={category} delay={idx * 0.1}>
-                  <div className="glass-card p-6" style={{ borderColor: "rgba(0,245,255,0.06)" }}>
-                    <h4 className="font-semibold text-sm mb-4 uppercase tracking-wider" style={{ color: "var(--accent)", fontFamily: "var(--font-space)" }}>{category}</h4>
-                    <div className="flex flex-wrap gap-2">
-                      {skillList.map((s: string) => <SkillPill key={s} label={s} />)}
-                    </div>
-                  </div>
-                </ScrollReveal>
-              ))}
+              {Object.entries(groupedSkills).map(([category, skillList], idx) => {
+                const isAI = category.includes("Machine") || category.includes("AI");
+                const isLang = category.includes("Language");
+                return (
+                  <ScrollReveal key={category} delay={idx * 0.1}>
+                    <SpotlightCard 
+                      className="p-8 h-full"
+                      highlightColor={isAI ? "rgba(123, 47, 255, 0.2)" : (isLang ? "rgba(0, 245, 255, 0.15)" : "rgba(255, 0, 128, 0.15)")}
+                      borderColor={isAI ? "rgba(123, 47, 255, 0.6)" : (isLang ? "rgba(0, 245, 255, 0.6)" : "rgba(255, 0, 128, 0.6)")}
+                    >
+                      <div className="flex items-center gap-4 mb-6">
+                        <div className="p-3 rounded-xl bg-white/5 border border-white/10 shadow-[0_0_15px_rgba(255,255,255,0.05)]">
+                          {isAI ? <BrainCircuit size={24} className="text-[#9d4edd]" /> : (isLang ? <Code2 size={24} className="text-cyan-400" /> : <Layers size={24} className="text-pink-500" />)}
+                        </div>
+                        <h4 className="font-bold text-lg leading-tight uppercase tracking-wider" style={{ color: "var(--text)", fontFamily: "var(--font-space)" }}>{category}</h4>
+                      </div>
+                      <div className="flex flex-wrap gap-2.5">
+                        {skillList.map((s: string) => <SkillPill key={s} label={s} gold={isAI && s.includes("LLM")} />)}
+                      </div>
+                    </SpotlightCard>
+                  </ScrollReveal>
+                );
+              })}
             </div>
           </div>
         </div>
@@ -282,22 +299,23 @@ export default function Home() {
                 
                 return (
                   <ScrollReveal key={edu.id}>
-                    <GlassCard className="p-8">
-                      <div className="flex items-center gap-4 mb-6">
-                        <div className="w-12 h-12 flex items-center justify-center rounded-xl" style={{ background: "rgba(0,245,255,0.06)", border: "1px solid rgba(0,245,255,0.15)" }}>
-                          <GraduationCap size={24} style={{ color: "var(--accent)" }} />
+                    <SpotlightCard className="p-8 h-full">
+                      <div className="flex items-center justify-between mb-8">
+                        <div className="w-14 h-14 flex items-center justify-center rounded-2xl bg-black border border-cyan-500/30 relative overflow-hidden">
+                          <div className="absolute inset-0 bg-cyan-500/20 blur-md" />
+                          <GraduationCap size={28} className="text-cyan-400 relative z-10" />
                         </div>
-                        <span className="text-xs font-semibold tracking-widest uppercase px-3 py-1 rounded-full" style={{ border: "1px solid rgba(0,245,255,0.15)", background: "rgba(0,245,255,0.06)", color: "var(--accent)" }}>
+                        <span className="text-xs font-bold tracking-widest uppercase px-4 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-400">
                           {edu.status}
                         </span>
                       </div>
-                      <h3 className="heading-xl text-xl mb-2">{edu.degree}</h3>
-                      <p className="text-lg font-medium mb-4" style={{ color: "var(--muted)" }}>{edu.university}</p>
-                      <div className="flex flex-wrap items-center gap-6 text-sm" style={{ color: "var(--muted)" }}>
-                        <span className="flex items-center gap-2"><MapPin size={16} />{edu.location}</span>
-                        <span className="flex items-center gap-2"><Calendar size={16} />{displayDate}</span>
+                      <h3 className="font-bold text-2xl tracking-tight mb-2" style={{ fontFamily: "var(--font-space)" }}>{edu.degree}</h3>
+                      <p className="text-lg font-medium mb-6" style={{ color: "var(--accent)" }}>{edu.university}</p>
+                      <div className="flex flex-wrap items-center gap-6 text-sm font-medium tracking-wide" style={{ color: "rgba(255,255,255,0.5)" }}>
+                        <span className="flex items-center gap-2"><MapPin size={16} className="text-cyan-400" />{edu.location}</span>
+                        <span className="flex items-center gap-2"><Calendar size={16} className="text-cyan-400" />{displayDate}</span>
                       </div>
-                    </GlassCard>
+                    </SpotlightCard>
                   </ScrollReveal>
                 );
               })}
@@ -309,27 +327,27 @@ export default function Home() {
             <ScrollReveal>
               <h2 className="heading-xl text-3xl sm:text-4xl mb-12">Publication</h2>
             </ScrollReveal>
-            <ScrollReveal direction="right" delay={0.2} className="relative">
-              <GlassCard className="p-8 relative overflow-hidden">
-                <div className="absolute -top-4 -left-2 text-[8rem] leading-none select-none pointer-events-none opacity-10 font-bold" style={{ fontFamily: "var(--font-orbitron)", color: "var(--accent)" }}>"</div>
+            <ScrollReveal direction="right" delay={0.2} className="relative h-full">
+              <SpotlightCard className="p-8 relative h-full flex flex-col justify-center" highlightColor="rgba(255, 0, 128, 0.15)" borderColor="rgba(255, 0, 128, 0.4)">
+                <div className="absolute -top-8 -left-4 text-[12rem] leading-none select-none pointer-events-none opacity-[0.03] font-bold" style={{ fontFamily: "var(--font-orbitron)", color: "white" }}>"</div>
                 <div className="relative z-10 flex flex-col gap-6">
-                  <h3 className="heading-xl text-xl leading-snug">{publicationData.title}</h3>
-                  <div className="flex flex-col gap-2 border-l-2 pl-4" style={{ borderColor: "var(--accent)" }}>
-                    <p className="font-medium" style={{ color: "var(--accent)" }}>{publicationData.journal}</p>
-                    <p className="text-sm" style={{ color: "var(--muted)" }}>
+                  <h3 className="font-bold text-2xl sm:text-3xl tracking-tight leading-snug" style={{ fontFamily: "var(--font-space)" }}>{publicationData.title}</h3>
+                  <div className="flex flex-col gap-3 border-l-2 pl-5" style={{ borderColor: "rgba(255, 0, 128, 0.5)" }}>
+                    <p className="font-semibold text-pink-400 text-lg">{publicationData.journal}</p>
+                    <p className="text-sm tracking-wide font-medium" style={{ color: "rgba(255,255,255,0.5)" }}>
                       Vol. {publicationData.volume}, No. {publicationData.issue}, pp. {publicationData.pages} · {publicationData.year}
                     </p>
                   </div>
-                  <div className="flex flex-wrap gap-2 pt-4">
-                    {publicationData.tags?.map((t: string) => <SkillPill key={t} label={t} />)}
+                  <div className="flex flex-wrap gap-2.5 pt-4">
+                    {publicationData.tags?.map((t: string) => <SkillPill key={t} label={t} gold={t.includes("Deep")} />)}
                   </div>
                   {publicationData.url && (
-                    <a href={publicationData.url} target="_blank" rel="noopener noreferrer" className="btn-ghost self-start flex items-center gap-2 text-sm mt-2">
+                    <a href={publicationData.url} target="_blank" rel="noopener noreferrer" className="btn-ghost self-start flex items-center gap-2 text-sm mt-4 tracking-wide">
                       Read Paper &rarr;
                     </a>
                   )}
                 </div>
-              </GlassCard>
+              </SpotlightCard>
             </ScrollReveal>
           </div>
 

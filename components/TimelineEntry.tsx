@@ -1,6 +1,7 @@
 "use client";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
+import SpotlightCard from "./SpotlightCard";
 
 interface Experience {
   id: number;
@@ -65,56 +66,58 @@ export default function TimelineEntry({ exp, isLast, index = 0 }: TimelineEntryP
 
       {/* Right: content */}
       <motion.div
-        initial={{ opacity: 0, x: isEven ? -30 : 30 }}
-        animate={inView ? { opacity: 1, x: 0 } : {}}
-        transition={{ duration: 0.6, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
-        className="pb-10 flex-1"
+        initial={{ opacity: 0, x: isEven ? -40 : 40, filter: "blur(4px)" }}
+        animate={inView ? { opacity: 1, x: 0, filter: "blur(0px)" } : {}}
+        transition={{ duration: 0.8, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+        className="pb-10 flex-1 relative"
       >
-        <div className="glass-card p-5 flex flex-col gap-3">
+        <SpotlightCard className="p-6 sm:p-8">
           {/* Role + date */}
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
+          <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-6">
             <div>
-              <h3 className="font-bold text-lg" style={{ color: "var(--text)", fontFamily: "var(--font-space)" }}>
+              <h3 className="font-bold text-2xl sm:text-3xl tracking-tight" style={{ color: "var(--text)", fontFamily: "var(--font-space)" }}>
                 {role}
               </h3>
-              <p className="text-sm mt-0.5" style={{ color: "var(--accent)" }}>
+              <p className="text-lg mt-1 font-medium" style={{ color: "var(--accent)" }}>
                 {company}
               </p>
             </div>
-            <div className="flex flex-col items-end gap-1">
+            <div className="flex flex-col items-end gap-1.5 shrink-0">
               {is_current && (
-                <span className="live-badge">
+                <span className="live-badge shadow-[0_0_15px_rgba(0,255,127,0.3)] border-green-500/30">
                   <span className="live-dot" />
                   Current
                 </span>
               )}
               <span
-                className="text-xs"
+                className="text-sm font-medium tracking-wide"
                 style={{ color: "var(--muted)", fontFamily: "var(--font-inter)" }}
               >
                 {formatDate(start_date, false)} — {end_date ? formatDate(end_date, false) : "Present"}
               </span>
-              <span className="text-xs" style={{ color: "var(--muted)" }}>{location}</span>
+              <span className="text-xs uppercase tracking-widest font-bold" style={{ color: "rgba(255,255,255,0.4)" }}>{location}</span>
             </div>
           </div>
 
           {/* Bullets */}
-          <ul className="flex flex-col gap-2 mt-1">
+          <ul className="flex flex-col gap-3 mt-4">
             {bullets?.map((b, i) => (
               <motion.li
                 key={i}
                 initial={{ opacity: 0, x: -10 }}
                 animate={inView ? { opacity: 1, x: 0 } : {}}
-                transition={{ delay: 0.3 + i * 0.08 }}
-                className="flex gap-2 text-sm"
-                style={{ color: "var(--muted)" }}
+                transition={{ delay: 0.3 + i * 0.1 }}
+                className="flex gap-4 text-base leading-relaxed"
+                style={{ color: "rgba(255,255,255,0.7)" }}
               >
-                <span style={{ color: "var(--accent)", marginTop: 2, flexShrink: 0 }}>›</span>
-                {b}
+                <div className="mt-1.5 shrink-0">
+                   <div className="w-1.5 h-1.5 rounded-full bg-cyan-400 shadow-[0_0_8px_rgba(0,245,255,0.8)]" />
+                </div>
+                <span>{b}</span>
               </motion.li>
             ))}
           </ul>
-        </div>
+        </SpotlightCard>
       </motion.div>
     </div>
   );
