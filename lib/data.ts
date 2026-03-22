@@ -324,7 +324,7 @@ export const publicationData = {
 };
 
 export const contactData = {
-  email: "kartavyabaluja453@gmail.com", phone: "07988467579",
+  email: "kartavyabaluja453@gmail.com", phone: "9138414874",
   linkedin_url: "https://linkedin.com/in/kartavya-baluja-214ba1256",
   github_url: "https://github.com/kartavya4874",
   footer_tagline: "Kartavya Baluja © 2025 · Built with Python, passion & caffeine",

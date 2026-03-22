@@ -62,7 +62,7 @@ cp .env.local.example .env.local
 | `GOOGLE_CLIENT_ID` | Google OAuth client ID |
 | `GOOGLE_CLIENT_SECRET` | Google OAuth client secret |
 | `ADMIN_EMAIL` | Admin email to whitelist |
-| `NEXT_PUBLIC_WHATSAPP_NUMBER` | WhatsApp number with country code (e.g. `917988467579`) |
+| `NEXT_PUBLIC_WHATSAPP_NUMBER` | WhatsApp number with country code (e.g. `9138414874`) |
 
 ### 5. Run the dev server
 ```bash

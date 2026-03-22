@@ -32,7 +32,7 @@ const socials = [
     id: "whatsapp",
     label: "WhatsApp",
     icon: MessageCircle,
-    href: `https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "917988467579"}`,
+    href: `https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "9138414874"}`,
     color: "#25D366",
     glow: "rgba(37,211,102,0.4)",
   },
@@ -75,11 +75,10 @@ export default function SocialBar({ labeled = false }: SocialBarProps) {
             boxShadow: `0 0 20px ${s.glow}`,
             borderColor: s.color,
           }}
-          className={`flex items-center gap-2 transition-all ${
-            labeled
+          className={`flex items-center gap-2 transition-all ${labeled
               ? "px-5 py-3 rounded-xl text-sm font-medium"
               : "p-2.5 rounded-xl"
-          }`}
+            }`}
           style={{
             background: "rgba(255,255,255,0.04)",
             border: "1px solid rgba(255,255,255,0.08)",
