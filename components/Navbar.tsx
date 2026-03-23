@@ -10,7 +10,6 @@ const links = [
   { href: "#about", label: "About" },
   { href: "#experience", label: "Experience" },
   { href: "#projects", label: "Projects" },
-  { href: "#live-links", label: "Live" },
   { href: "#certifications", label: "Certs" },
   { href: "#education", label: "Education" },
   { href: "#publication", label: "Publication" },
@@ -151,14 +150,7 @@ export default function Navbar() {
                       boxShadow: activeSection === l.href ? "0 0 20px rgba(0,245,255,0.05)" : "none",
                     }}
                   >
-                    {l.href === "#live-links" ? (
-                      <span className="flex items-center justify-center gap-2">
-                        <span className="live-dot" style={{ width: 6, height: 6 }} />
-                        {l.label}
-                      </span>
-                    ) : (
-                      l.label
-                    )}
+                    {l.label}
                   </a>
                 </motion.li>
               ))}

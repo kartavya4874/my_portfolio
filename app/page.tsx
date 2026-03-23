@@ -9,11 +9,9 @@ import {
   educationData,
   publicationData,
   contactData,
-  liveLinksData,
 } from "@/lib/data";
 import AnimatedText from "@/components/AnimatedText";
 import SocialBar from "@/components/SocialBar";
-import GlassCard from "@/components/GlassCard";
 import SkillPill from "@/components/SkillPill";
 import ProjectCard from "@/components/ProjectCard";
 import TimelineEntry from "@/components/TimelineEntry";
@@ -22,7 +20,7 @@ import ScrollReveal from "@/components/ScrollReveal";
 import AnimatedCounter from "@/components/AnimatedCounter";
 import ContactButtons from "@/components/ContactButtons";
 import SpotlightCard from "@/components/SpotlightCard";
-import { ArrowRight, Download, GraduationCap, MapPin, Calendar, ExternalLink, ChevronDown, BrainCircuit, Code2, Layers } from "lucide-react";
+import { ArrowRight, Download, GraduationCap, MapPin, Calendar, ChevronDown, BrainCircuit, Code2, Layers } from "lucide-react";
 import Image from "next/image";
 
 export default function Home() {
@@ -220,47 +218,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ───────────────────────────────────────────────────────────────── */}
-      {/* 5. LIVE LINKS SECTION */}
-      {/* ───────────────────────────────────────────────────────────────── */}
-      {liveLinksData.length > 0 && (
-        <section id="live-links" className="py-24 sm:py-32 border-t section-backdrop" style={{ borderColor: "rgba(255,255,255,0.06)" }}>
-          <div className="max-w-4xl mx-auto px-6">
-            <ScrollReveal direction="left">
-              <div className="mb-12 flex items-center gap-4">
-                <h2 className="heading-xl text-3xl sm:text-4xl">Live Projects</h2>
-                <span className="live-badge"><span className="live-dot" />PRODUCTION</span>
-              </div>
-            </ScrollReveal>
-            <div className="flex flex-col gap-6">
-              {liveLinksData.map((link: any, idx: number) => (
-                <ScrollReveal key={link.id} delay={idx * 0.1}>
-                  <GlassCard className="p-6 sm:p-8 flex flex-col sm:flex-row gap-6 hover:border-white/20 transition-colors">
-                    <div className="flex flex-col gap-4 flex-1">
-                      <div className="flex items-start justify-between gap-3">
-                        <h3 className="font-bold text-xl sm:text-2xl" style={{ fontFamily: "var(--font-space)" }}>{link.title}</h3>
-                        <span className="live-badge shrink-0 mt-1"><span className="live-dot" />LIVE</span>
-                      </div>
-                      {link.description && <p className="text-sm leading-relaxed" style={{ color: "var(--muted)" }}>{link.description}</p>}
-                      <p className="text-sm truncate font-medium flex items-center gap-2" style={{ color: "var(--accent)" }}>
-                        <ExternalLink size={14} /> {link.url}
-                      </p>
-                      {link.tech_stack?.length > 0 && (
-                        <div className="flex flex-wrap gap-2 mt-2">
-                          {link.tech_stack.map((t: string) => <SkillPill key={t} label={t} />)}
-                        </div>
-                      )}
-                      <a href={link.url} target="_blank" rel="noopener noreferrer" className="btn-primary self-start flex items-center gap-2 text-sm mt-4">
-                        Visit Application
-                      </a>
-                    </div>
-                  </GlassCard>
-                </ScrollReveal>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
+
+
 
       {/* ───────────────────────────────────────────────────────────────── */}
       {/* 6. CERTIFICATIONS SECTION */}
@@ -280,6 +239,16 @@ export default function Home() {
               </ScrollReveal>
             ))}
           </div>
+          <ScrollReveal delay={0.4}>
+            <div className="mt-12 text-center">
+              <a
+                href="/certifications"
+                className="btn-primary inline-flex items-center gap-2 text-sm"
+              >
+                View All Certificates →
+              </a>
+            </div>
+          </ScrollReveal>
         </div>
       </section>
 

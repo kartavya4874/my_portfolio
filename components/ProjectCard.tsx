@@ -26,8 +26,8 @@ export default function ProjectCard({ project }: ProjectCardProps) {
 
   const x = useMotionValue(0);
   const y = useMotionValue(0);
-  const rotateX = useSpring(useTransform(y, [-0.5, 0.5], [8, -8]), { stiffness: 200, damping: 20 });
-  const rotateY = useSpring(useTransform(x, [-0.5, 0.5], [-8, 8]), { stiffness: 200, damping: 20 });
+  const rotateX = useSpring(useTransform(y, [-0.5, 0.5], [3, -3]), { stiffness: 150, damping: 25 });
+  const rotateY = useSpring(useTransform(x, [-0.5, 0.5], [-3, 3]), { stiffness: 150, damping: 25 });
 
   function handleMouse(e: React.MouseEvent) {
     const rect = cardRef.current?.getBoundingClientRect();
@@ -90,16 +90,31 @@ export default function ProjectCard({ project }: ProjectCardProps) {
       </div>
 
       {/* Action buttons */}
-      <div className="flex items-center gap-3 pt-1">
+      <div className="flex items-center gap-3 pt-3 mt-auto border-t" style={{ borderColor: "rgba(255,255,255,0.06)" }}>
         {github_url && (
           <a
             href={github_url}
             target="_blank"
             rel="noopener noreferrer"
-            className="btn-ghost flex items-center gap-2 text-sm py-2 px-4"
+            className="flex items-center gap-2 text-sm py-2.5 px-5 rounded-lg font-medium transition-all duration-300"
+            style={{
+              border: "1px solid rgba(255,255,255,0.1)",
+              color: "var(--muted)",
+              backgroundColor: "rgba(255,255,255,0.03)",
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.borderColor = "rgba(255,255,255,0.25)";
+              e.currentTarget.style.color = "var(--text)";
+              e.currentTarget.style.backgroundColor = "rgba(255,255,255,0.06)";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.borderColor = "rgba(255,255,255,0.1)";
+              e.currentTarget.style.color = "var(--muted)";
+              e.currentTarget.style.backgroundColor = "rgba(255,255,255,0.03)";
+            }}
           >
-            <Github size={14} />
-            GitHub
+            <Github size={15} />
+            Source Code
           </a>
         )}
         {live_url && (
@@ -107,10 +122,25 @@ export default function ProjectCard({ project }: ProjectCardProps) {
             href={live_url}
             target="_blank"
             rel="noopener noreferrer"
-            className="btn-primary flex items-center gap-2 text-sm py-2 px-4"
+            className="flex items-center gap-2 text-sm py-2.5 px-5 rounded-lg font-medium transition-all duration-300"
+            style={{
+              background: "linear-gradient(135deg, rgba(0,245,255,0.15), rgba(123,47,255,0.15))",
+              border: "1px solid rgba(0,245,255,0.3)",
+              color: "var(--accent)",
+              boxShadow: "0 0 12px rgba(0,245,255,0.1)",
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.boxShadow = "0 0 20px rgba(0,245,255,0.25)";
+              e.currentTarget.style.borderColor = "rgba(0,245,255,0.5)";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.boxShadow = "0 0 12px rgba(0,245,255,0.1)";
+              e.currentTarget.style.borderColor = "rgba(0,245,255,0.3)";
+            }}
           >
-            <ExternalLink size={14} />
-            Live Demo
+            <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" style={{ boxShadow: "0 0 6px rgba(0,255,127,0.5)" }} />
+            <ExternalLink size={15} />
+            Live Link
           </a>
         )}
       </div>
